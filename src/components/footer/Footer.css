@@ -1,0 +1,22 @@
+footer {
+  background-color: #ff4524;
+}
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  color: #fff;
+  padding: 10px;
+}
+.footer-content i {
+  font-size: 1.5rem;
+  margin-right: 10px;
+}
+.copy {
+  color: #fff;
+  background-color: #ff593c;
+  padding: 10px;
+  text-align: center;
+}
+.copy a {
+  color: gray;
+}

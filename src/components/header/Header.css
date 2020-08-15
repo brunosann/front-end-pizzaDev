@@ -1,0 +1,23 @@
+header {
+  background-color: #ff4524;
+}
+.header-nav {
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.user {
+  display: flex;
+  color: #fff;
+  font-size: 1.5rem;
+}
+.user-log {
+  margin-right: 10px;
+}
+#sign {
+  font-size: 2rem;
+}
+h1 {
+  color: #fff;
+}
