@@ -1,0 +1,41 @@
+aside {
+  display: none;
+  float: right;
+  padding-bottom: 50px;
+  border-radius: 0 0 100px 100px;
+  background-color: rgba(57, 155, 226, 0.3);
+}
+.cart-pizza {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid #757575;
+  padding-bottom: 5px;
+  margin: 10px;
+}
+.cart-pizza-name {
+  margin-right: 20px;
+}
+.cart-btn-group button {
+  border: none;
+  background-color: #fff;
+  font-size: 1.1rem;
+  padding: 2px;
+}
+.cart-btn-group button:nth-child(odd) {
+  border-radius: 4px;
+  cursor: pointer;
+}
+.cart-buy {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.cart-btn-buy {
+  border: none;
+  background-color: #69995d;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
