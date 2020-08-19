@@ -1,9 +1,9 @@
 import React from "react";
 import "./Footer.css";
 
-const Footer = () => {
+const Footer = ({ fixed }) => {
   return (
-    <footer>
+    <footer style={fixed ? { position: "fixed" } : { position: "relative" }}>
       <div className="container">
         <div className="footer-content">
           <div className="hour">

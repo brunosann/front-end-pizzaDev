@@ -9,8 +9,10 @@ header {
 }
 .user {
   display: flex;
-  color: #fff;
   font-size: 1.5rem;
+}
+.user a {
+  color: #fff;
 }
 .user-log {
   margin-right: 10px;

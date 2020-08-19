@@ -24,7 +24,7 @@ const Home = () => {
           <Pizza clickPiza={handleClickPizza} />
         </div>
       </div>
-      <Footer />
+      <Footer fixed="" />
     </React.Fragment>
   );
 };
