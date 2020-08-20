@@ -6,9 +6,18 @@ import Cart from "../../components/cart/Cart";
 import "./Home.css";
 
 const Home = () => {
-  const handleClickPizza = ({ target }) => {
-    console.log(target.parentElement);
+  const [pizzas, setPizzas] = React.useState(null);
+
+  const getPizzas = async () => {
+    const pizzas = await fetch("http://localhost:3333/");
+    const pizzasJson = await pizzas.json();
+    setPizzas(pizzasJson);
   };
+  React.useEffect(() => {
+    getPizzas();
+  }, []);
+
+  if (!pizzas) return null;
 
   return (
     <React.Fragment>
@@ -17,11 +26,9 @@ const Home = () => {
       <div className="container">
         <p className="lead">Em breve ofertas especiais para CADASTRADOS!</p>
         <div className="pizzas">
-          <Pizza clickPiza={handleClickPizza} />
-          <Pizza clickPiza={handleClickPizza} />
-          <Pizza clickPiza={handleClickPizza} />
-          <Pizza clickPiza={handleClickPizza} />
-          <Pizza clickPiza={handleClickPizza} />
+          {pizzas.map((pizza) => (
+            <Pizza key={pizza.id} {...pizza} />
+          ))}
         </div>
       </div>
       <Footer fixed="" />
