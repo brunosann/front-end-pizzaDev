@@ -4,6 +4,7 @@ import "./Pizza.css";
 const Pizza = ({ id, name, img, size_g, size_m, size_p, description }) => {
   const [priceSize, setPricesize] = React.useState(size_g);
   const [sizePizza, setSizePizza] = React.useState("Grande");
+  const [pizzas, setPizzas] = React.useState([]);
 
   const changeBtnActive = (target) => {
     target.parentElement
@@ -33,6 +34,7 @@ const Pizza = ({ id, name, img, size_g, size_m, size_p, description }) => {
     } else {
       pizzas.push(pizza);
     }
+    setPizzas(pizzas);
     window.localStorage.setItem("pizzas", JSON.stringify(pizzas));
   };
 

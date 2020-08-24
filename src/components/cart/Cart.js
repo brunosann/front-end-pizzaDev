@@ -2,41 +2,25 @@ import React from "react";
 import "./Cart.css";
 
 const Cart = () => {
+  const [storage, setStorage] = React.useState(null);
+  React.useEffect(() => {
+    setStorage(JSON.parse(window.localStorage.getItem("pizzas")));
+  }, []);
   return (
     <aside>
       <h2>Suas Pizzas</h2>
-      <div className="cart-pizza">
-        <span className="cart-pizza-name">Mussarela(G)</span>
-        <div className="cart-btn-group">
-          <button>-</button>
-          <button>1</button>
-          <button>+</button>
-        </div>
-      </div>
-      <div className="cart-pizza">
-        <span className="cart-pizza-name">Mussarela(P)</span>
-        <div className="cart-btn-group">
-          <button>-</button>
-          <button>2</button>
-          <button>+</button>
-        </div>
-      </div>
-      <div className="cart-pizza">
-        <span className="cart-pizza-name">Mussarela(P)</span>
-        <div className="cart-btn-group">
-          <button>-</button>
-          <button>2</button>
-          <button>+</button>
-        </div>
-      </div>
-      <div className="cart-pizza">
-        <span className="cart-pizza-name">Mussarela(P)</span>
-        <div className="cart-btn-group">
-          <button>-</button>
-          <button>2</button>
-          <button>+</button>
-        </div>
-      </div>
+      {storage &&
+        storage.map((pizza, index) => (
+          <div key={index} className="cart-pizza">
+            <span className="cart-pizza-name">{pizza.pizza}</span>
+            <div className="cart-btn-group">
+              <button>-</button>
+              <button>{pizza.qt}</button>
+              <button>+</button>
+            </div>
+          </div>
+        ))}
+
       <div className="cart-pizza">
         <h3>Total</h3>
         <span>R$ 18,10</span>

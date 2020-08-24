@@ -3,6 +3,11 @@ import { Link } from "react-router-dom";
 import "./Header.css";
 
 const Header = () => {
+  const handleCart = () => {
+    const sectionCart = document.querySelector("aside");
+    sectionCart.style.display = "block";
+  };
+
   return (
     <header>
       <div className="container">
@@ -17,6 +22,12 @@ const Header = () => {
               <span className="user-log">Login</span>
               <i id="sign" className="fa fa-sign-in"></i>
             </Link>
+            <i
+              onClick={handleCart}
+              id="cart"
+              style={{ color: "#fff", cursor: "pointer" }}
+              className="fa fa-shopping-cart"
+            ></i>
           </div>
         </nav>
       </div>
