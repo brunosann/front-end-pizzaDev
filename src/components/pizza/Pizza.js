@@ -1,10 +1,12 @@
 import React from "react";
 import "./Pizza.css";
+import PizzaContext from "../PizzaContext";
 
 const Pizza = ({ id, name, img, size_g, size_m, size_p, description }) => {
   const [priceSize, setPricesize] = React.useState(size_g);
   const [sizePizza, setSizePizza] = React.useState("Grande");
-  const [pizzas, setPizzas] = React.useState([]);
+
+  const { setPizzasStorage } = React.useContext(PizzaContext);
 
   const changeBtnActive = (target) => {
     target.parentElement
@@ -34,7 +36,7 @@ const Pizza = ({ id, name, img, size_g, size_m, size_p, description }) => {
     } else {
       pizzas.push(pizza);
     }
-    setPizzas(pizzas);
+    setPizzasStorage(pizzas);
     window.localStorage.setItem("pizzas", JSON.stringify(pizzas));
   };
 

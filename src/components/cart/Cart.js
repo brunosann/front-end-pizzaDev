@@ -1,22 +1,46 @@
 import React from "react";
 import "./Cart.css";
+import PizzaContext from "../PizzaContext";
 
 const Cart = () => {
-  const [storage, setStorage] = React.useState(null);
-  React.useEffect(() => {
-    setStorage(JSON.parse(window.localStorage.getItem("pizzas")));
-  }, []);
+  const { pizzasStorage, setPizzasStorage } = React.useContext(PizzaContext);
+
+  const removePizza = ({ target }) => {
+    const selectedPizza = target.parentElement.previousElementSibling.innerText;
+    const oldPizzas = [...pizzasStorage];
+    const pizzaIndex = oldPizzas.findIndex((p) => p.pizza === selectedPizza);
+    const pizza = oldPizzas.find((p) => p.pizza === selectedPizza);
+    pizza.qt--;
+    oldPizzas.splice(pizzaIndex, 1, pizza);
+    if (pizza.qt === 0) {
+      oldPizzas.splice(pizzaIndex, 1);
+    }
+    window.localStorage.setItem("pizzas", JSON.stringify(oldPizzas));
+    setPizzasStorage(oldPizzas);
+  };
+
+  const morePizza = ({ target }) => {
+    const selectedPizza = target.parentElement.previousElementSibling.innerText;
+    const oldPizzas = [...pizzasStorage];
+    const pizzaIndex = oldPizzas.findIndex((p) => p.pizza === selectedPizza);
+    const pizza = oldPizzas.find((p) => p.pizza === selectedPizza);
+    pizza.qt++;
+    oldPizzas.splice(pizzaIndex, 1, pizza);
+    window.localStorage.setItem("pizzas", JSON.stringify(oldPizzas));
+    setPizzasStorage(oldPizzas);
+  };
+
   return (
     <aside>
       <h2>Suas Pizzas</h2>
-      {storage &&
-        storage.map((pizza, index) => (
+      {pizzasStorage &&
+        pizzasStorage.map((pizza, index) => (
           <div key={index} className="cart-pizza">
             <span className="cart-pizza-name">{pizza.pizza}</span>
             <div className="cart-btn-group">
-              <button>-</button>
+              <button onClick={removePizza}>-</button>
               <button>{pizza.qt}</button>
-              <button>+</button>
+              <button onClick={morePizza}>+</button>
             </div>
           </div>
         ))}
