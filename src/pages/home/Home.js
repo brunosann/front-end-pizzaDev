@@ -9,6 +9,7 @@ import "./Home.css";
 const Home = () => {
   const [pizzas, setPizzas] = React.useState(null);
   const [pizzasStorage, setPizzasStorage] = React.useState([]);
+  const [modal, setModal] = React.useState(false);
 
   React.useEffect(() => {
     setPizzasStorage(JSON.parse(window.localStorage.getItem("pizzas")));
@@ -27,9 +28,11 @@ const Home = () => {
 
   return (
     <React.Fragment>
-      <PizzaContext.Provider value={{ setPizzasStorage, pizzasStorage }}>
+      <PizzaContext.Provider
+        value={{ setPizzasStorage, pizzasStorage, setModal }}
+      >
         <Header />
-        <Cart />
+        {modal && <Cart />}
         <div className="container">
           <p className="lead">Em breve ofertas especiais para CADASTRADOS!</p>
           <div className="pizzas">

@@ -1,11 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import PizzaContext from "../PizzaContext";
 import "./Header.css";
 
 const Header = () => {
+  const { setModal } = React.useContext(PizzaContext);
+
   const handleCart = () => {
-    const sectionCart = document.querySelector("aside");
-    sectionCart.style.display = "block";
+    setModal((old) => !old);
   };
 
   return (
@@ -25,7 +27,6 @@ const Header = () => {
             <i
               onClick={handleCart}
               id="cart"
-              style={{ color: "#fff", cursor: "pointer" }}
               className="fa fa-shopping-cart"
             ></i>
           </div>

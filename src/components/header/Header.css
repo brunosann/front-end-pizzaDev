@@ -17,8 +17,14 @@ header {
 .user-log {
   margin-right: 10px;
 }
-#sign {
+#sign,
+#cart {
   font-size: 2rem;
+}
+#cart {
+  color: #fff;
+  margin-left: 15px;
+  cursor: pointer;
 }
 h1 {
   color: #fff;
