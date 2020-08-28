@@ -20,10 +20,6 @@ const Header = () => {
             </Link>
           </div>
           <div className="user">
-            <Link to="/login">
-              <span className="user-log">Login</span>
-              <i id="sign" className="fa fa-sign-in"></i>
-            </Link>
             <i
               onClick={handleCart}
               id="cart"

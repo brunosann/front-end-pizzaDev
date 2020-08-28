@@ -19,14 +19,11 @@ header {
 .user-log {
   margin-right: 10px;
 }
-#sign,
-#cart {
-  font-size: 2rem;
-}
 #cart {
   color: #fff;
   margin: 0 15px;
   cursor: pointer;
+  font-size: 2.5rem;
 }
 h1 {
   color: #fff;
