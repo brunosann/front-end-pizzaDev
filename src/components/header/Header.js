@@ -4,7 +4,7 @@ import PizzaContext from "../PizzaContext";
 import "./Header.css";
 
 const Header = () => {
-  const { setModal } = React.useContext(PizzaContext);
+  const { setModal, amountPizza } = React.useContext(PizzaContext);
 
   const handleCart = () => {
     setModal((old) => !old);
@@ -29,6 +29,7 @@ const Header = () => {
               id="cart"
               className="fa fa-shopping-cart"
             ></i>
+            <span className="amount">{amountPizza}</span>
           </div>
         </nav>
       </div>

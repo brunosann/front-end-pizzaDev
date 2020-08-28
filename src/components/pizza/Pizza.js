@@ -24,12 +24,24 @@ const Pizza = ({ id, name, img, size_g, size_m, size_p, description }) => {
     else if (size === "Pequena") return setPricesize(size_p);
   };
 
+  const selectedPrice = (size) => {
+    if (size === "G") return size_g;
+    if (size === "M") return size_m;
+    if (size === "P") return size_p;
+  };
+
   const addCart = () => {
     let pizzas = JSON.parse(window.localStorage.getItem("pizzas"));
     if (!pizzas) {
       pizzas = [];
     }
-    const pizza = { id, pizza: `${name}(${sizePizza.charAt(0)})`, qt: 1 };
+    const selectedSize = sizePizza.charAt(0);
+    const pizza = {
+      id,
+      pizza: `${name}(${selectedSize})`,
+      qt: 1,
+      price: selectedPrice(selectedSize),
+    };
     const existPizza = pizzas.find((p) => p.pizza === pizza.pizza);
     if (existPizza) {
       existPizza.qt++;

@@ -3,7 +3,17 @@ import "./Cart.css";
 import PizzaContext from "../PizzaContext";
 
 const Cart = () => {
+  const [totalPrice, setTotalPrice] = React.useState(0);
   const { pizzasStorage, setPizzasStorage } = React.useContext(PizzaContext);
+
+  React.useEffect(() => {
+    if (!pizzasStorage) return;
+    const total = pizzasStorage.reduce((acc, p) => {
+      const sum = p.qt * p.price;
+      return acc + sum;
+    }, 0);
+    setTotalPrice(total);
+  }, [pizzasStorage]);
 
   const removePizza = ({ target }) => {
     const selectedPizza = target.parentElement.previousElementSibling.innerText;
@@ -47,7 +57,7 @@ const Cart = () => {
 
       <div className="cart-pizza">
         <h3>Total</h3>
-        <span>R$ 18,10</span>
+        <span>R$ {totalPrice.toFixed(2).replace(".", ",")}</span>
       </div>
       <div className="cart-buy">
         <button className="cart-btn-buy">Finalizar Compra</button>

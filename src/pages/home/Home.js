@@ -10,10 +10,20 @@ const Home = () => {
   const [pizzas, setPizzas] = React.useState(null);
   const [pizzasStorage, setPizzasStorage] = React.useState([]);
   const [modal, setModal] = React.useState(false);
+  const [amountPizza, setAmountPizza] = React.useState(0);
 
   React.useEffect(() => {
     setPizzasStorage(JSON.parse(window.localStorage.getItem("pizzas")));
   }, []);
+
+  React.useEffect(() => {
+    const pizzas = JSON.parse(window.localStorage.getItem("pizzas"));
+    if (!pizzas) return;
+    const amount = pizzas.reduce((acc, p) => {
+      return acc + p.qt;
+    }, 0);
+    setAmountPizza(amount);
+  }, [pizzasStorage]);
 
   const getPizzas = async () => {
     const pizzas = await fetch("http://localhost:3333/");
@@ -29,7 +39,7 @@ const Home = () => {
   return (
     <React.Fragment>
       <PizzaContext.Provider
-        value={{ setPizzasStorage, pizzasStorage, setModal }}
+        value={{ setPizzasStorage, pizzasStorage, setModal, amountPizza }}
       >
         <Header />
         {modal && <Cart />}
