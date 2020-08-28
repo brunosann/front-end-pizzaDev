@@ -4,9 +4,12 @@ import PizzaContext from "../PizzaContext";
 
 const Cart = () => {
   const [totalPrice, setTotalPrice] = React.useState(0);
-  const { pizzasStorage, setPizzasStorage, setAmountPizza } = React.useContext(
-    PizzaContext,
-  );
+  const {
+    pizzasStorage,
+    setPizzasStorage,
+    setAmountPizza,
+    setModal,
+  } = React.useContext(PizzaContext);
 
   React.useEffect(() => {
     if (!pizzasStorage) return setTotalPrice(0);
@@ -72,6 +75,13 @@ const Cart = () => {
         <button className="cart-btn-buy" onClick={checkout}>
           Finalizar Compra
         </button>
+      </div>
+      <div className="close">
+        <i
+          id="btn-close"
+          className="fa fa-close"
+          onClick={() => setModal(false)}
+        ></i>
       </div>
     </aside>
   );
