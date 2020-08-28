@@ -4,10 +4,12 @@ import PizzaContext from "../PizzaContext";
 
 const Cart = () => {
   const [totalPrice, setTotalPrice] = React.useState(0);
-  const { pizzasStorage, setPizzasStorage } = React.useContext(PizzaContext);
+  const { pizzasStorage, setPizzasStorage, setAmountPizza } = React.useContext(
+    PizzaContext,
+  );
 
   React.useEffect(() => {
-    if (!pizzasStorage) return;
+    if (!pizzasStorage) return setTotalPrice(0);
     const total = pizzasStorage.reduce((acc, p) => {
       const sum = p.qt * p.price;
       return acc + sum;
@@ -40,6 +42,13 @@ const Cart = () => {
     setPizzasStorage(oldPizzas);
   };
 
+  const checkout = () => {
+    window.localStorage.removeItem("pizzas");
+    setPizzasStorage(null);
+    setAmountPizza(0);
+    alert("Obrigado Por comprar com a gente");
+  };
+
   return (
     <aside>
       <h2>Suas Pizzas</h2>
@@ -60,7 +69,9 @@ const Cart = () => {
         <span>R$ {totalPrice.toFixed(2).replace(".", ",")}</span>
       </div>
       <div className="cart-buy">
-        <button className="cart-btn-buy">Finalizar Compra</button>
+        <button className="cart-btn-buy" onClick={checkout}>
+          Finalizar Compra
+        </button>
       </div>
     </aside>
   );

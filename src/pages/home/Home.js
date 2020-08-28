@@ -39,7 +39,13 @@ const Home = () => {
   return (
     <React.Fragment>
       <PizzaContext.Provider
-        value={{ setPizzasStorage, pizzasStorage, setModal, amountPizza }}
+        value={{
+          setPizzasStorage,
+          pizzasStorage,
+          setModal,
+          amountPizza,
+          setAmountPizza,
+        }}
       >
         <Header />
         {modal && <Cart />}
